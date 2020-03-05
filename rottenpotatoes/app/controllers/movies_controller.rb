@@ -62,3 +62,9 @@ class MoviesController < ApplicationController
   end
 
 end
+
+def search_directors
+    @movie = Movie.find(params[:id])
+    @movies = Movie.find_similar_movies(@movie.director)
+    render 'similar_movies'
+  end
