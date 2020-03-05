@@ -1,3 +1,9 @@
+class AddDirectorToMovies < ActiveRecord::Migration
+  def change
+    add_column :movies, :director, :string
+  end
+end
+
 class CreateMovies < ActiveRecord::Migration
   def up
     create_table :movies do |t|
