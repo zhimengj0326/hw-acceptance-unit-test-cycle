@@ -65,6 +65,13 @@ end
 
 def search_directors
     @movie = Movie.find(params[:id])
-    @movies = Movie.find_similar_movies(@movie.director)
-    render 'similar_movies'
+    director = @movie.director
+
+    if director and !director.empty?
+      @movies = Movie.find_similar_movies(director)
+      render 'similar_movies'
+    else
+      flash[:notice] = "'#{@movie.title}' has no director info"
+      redirect_to movies_path
+    end
   end
